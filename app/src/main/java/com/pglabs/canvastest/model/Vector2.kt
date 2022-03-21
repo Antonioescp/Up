@@ -18,6 +18,7 @@ class Vector2 {
     }
 
     fun magnitude() = sqrt(x * x + y * y)
+    fun normalized() = Vector2(x, y) / magnitude()
 
     operator fun plus(other: Vector2) = Vector2(x + other.x, y + other.y)
     operator fun unaryMinus() = Vector2(-x, -y)

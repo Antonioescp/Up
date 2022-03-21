@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.view.View
+import com.pglabs.canvastest.R
 
 class Game(context: Context): View(context) {
 
@@ -20,7 +21,11 @@ class Game(context: Context): View(context) {
 
     fun initialize() {
         paint = Paint()
-        gameActors.add(Kirby(this))
+
+        var movingRing = MovingSpriteActorExample(this)
+        movingRing.sprite = R.drawable.anillitos
+
+        gameActors.add(movingRing)
     }
 
     override fun onDraw(canvas: Canvas) {

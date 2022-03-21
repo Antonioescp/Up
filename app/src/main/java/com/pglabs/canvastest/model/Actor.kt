@@ -1,12 +1,23 @@
 package com.pglabs.canvastest.model
 
-import android.graphics.Canvas
-
 open class Actor(val game: Game) {
     var position = Vector2()
     var scale = Vector2()
     var rotation = Vector2()
 
+    private var drawable = Sprite(game.context)
+
+    var sprite: Int = 0
+        get() {
+            return field
+        }
+        set(value) {
+            drawable.set(value)
+            field = value
+        }
+
     open fun update() {}
-    open fun draw() {}
+    open fun draw() {
+        drawable.draw(position, game.canvas)
+    }
 }
