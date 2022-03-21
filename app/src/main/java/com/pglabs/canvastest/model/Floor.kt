@@ -9,10 +9,6 @@ class Floor(ownerGame: Game) : Actor(ownerGame) {
     private var width: Float = 0.0f
     private var height: Float = 0.0f
 
-    private var backgroundRock = Sprite(game.context)
-    private var backgroundRockPosition = Vector2()
-    private var rockScaleFactor = 0.10f
-
     private var frontGrass = Sprite(game.context)
     private var frontGrassPosition = Vector2()
     private var frontGrassScaleFactor = 0.6f
@@ -24,10 +20,6 @@ class Floor(ownerGame: Game) : Actor(ownerGame) {
 
         width = game.width.toFloat()
         height = game.height / 4.0f
-
-        backgroundRock.set(R.drawable.rockbg)
-        backgroundRockPosition.x = position.x / rockScaleFactor
-        backgroundRockPosition.y = position.y / rockScaleFactor
 
         frontGrass.set(R.drawable.grass)
         frontGrassPosition.x = game.width / 2.0f / frontGrassScaleFactor
@@ -47,18 +39,6 @@ class Floor(ownerGame: Game) : Actor(ownerGame) {
             game.height.toFloat(),
             game.paint
         )
-
-        // Piedras en el suelo
-        game.canvas?.save()
-        game.canvas?.scale(rockScaleFactor, rockScaleFactor)
-
-        backgroundRock.draw(backgroundRockPosition, game.canvas)
-        backgroundRock.draw(
-            backgroundRockPosition + Vector2(game.width.toFloat(), 0.0f) / rockScaleFactor,
-            game.canvas
-        )
-
-        game.canvas?.restore()
 
         // Pasto en el suelo
         game.canvas?.save()

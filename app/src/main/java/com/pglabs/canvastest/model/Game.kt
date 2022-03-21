@@ -27,24 +27,21 @@ class Game(context: Context): View(context) {
     fun initialize() {
         paint = Paint()
 
-        var goombaLeft = goombaLeftMoving(this)
-        goombaLeft.sprite = R.drawable.goombaizquierda
-
-        var goombaRight = goombaRightMoving(this)
-        goombaRight.sprite = R.drawable.goombaderecha
-
-        gameActors.add(goombaLeft)
-        gameActors.add(goombaRight)
-
         setBackgroundResource(R.drawable.background)
 
         skyStars.set(R.drawable.sky_stars)
 
         val floor = Floor(this)
-        val player = Player(this, floor)
-
         gameActors.add(floor)
+
+        val enemy = Enemy(this, floor)
+        val player = Player(this, floor, enemy)
+
         gameActors.add(player)
+        gameActors.add(enemy)
+
+        val rocks = Rock(this, floor)
+        gameActors.add(rocks)
     }
 
     override fun onDraw(canvas: Canvas) {
@@ -55,8 +52,8 @@ class Game(context: Context): View(context) {
                 it.start()
             }
 
-            skyStarsPosition.x = canvas.width.toFloat() / 2.0f / 0.05f
-            skyStarsPosition.y = canvas.height.toFloat() / 4.0f / 0.1f
+            skyStarsPosition.x = width.toFloat() / 2.0f / 0.05f
+            skyStarsPosition.y = height.toFloat() / 4.0f / 0.1f
             hasInitializedActors = true
         }
 

@@ -1,20 +1,25 @@
 package com.pglabs.canvastest.model
 
-class goombaLeftMoving(ownerGame: Game) : Actor(ownerGame) {
-    var movementSpeed = 100.0f
+import kotlin.random.Random
+
+class goombaLeftMoving(ownerGame: Game, private val floor: Floor) : Actor(ownerGame) {
+    val baseMovementSpeed = 1000.0f
+    private var movementSpeed = baseMovementSpeed
 
     override fun start() {
         super.start()
 
         position.x = game.width.toFloat()
-        position.y = game.height.toFloat() - 250.0f
+        position.y = floor.position.y
     }
 
     override fun update() {
         super.update()
 
-        if(position.x == 0.0f){
+        if(position.x <= 0.0f){
             position.x = game.width.toFloat()
+
+            movementSpeed = (Random.nextFloat() + 0.5f) * baseMovementSpeed
         }
 
         var direction = Vector2(-game.width.toFloat(), 0.0f)
