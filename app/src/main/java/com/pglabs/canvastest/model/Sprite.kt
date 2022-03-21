@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.drawable.Drawable
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.toBitmap
 
 class Sprite(private var ctx: Context) {
     private var image: Drawable? = null
@@ -16,6 +17,10 @@ class Sprite(private var ctx: Context) {
 
     fun set(id: Int) {
         image = ContextCompat.getDrawable(ctx, id)
+
+        if (image == null) {
+            println("Couldn't set sprite")
+        }
     }
 
     fun draw(position: Vector2, canvas: Canvas?) {

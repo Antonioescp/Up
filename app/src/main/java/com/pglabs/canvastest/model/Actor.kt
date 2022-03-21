@@ -2,8 +2,6 @@ package com.pglabs.canvastest.model
 
 open class Actor(val game: Game) {
     var position = Vector2()
-    var scale = Vector2()
-    var rotation = Vector2()
 
     private var drawable = Sprite(game.context)
 
@@ -16,7 +14,7 @@ open class Actor(val game: Game) {
             field = value
         }
 
-    open fun start() {}
+    open fun start() { }
     open fun update() {}
     open fun draw() {
         drawable.draw(position, game.canvas)
