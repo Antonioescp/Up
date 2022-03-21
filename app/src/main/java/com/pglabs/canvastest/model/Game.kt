@@ -23,14 +23,16 @@ class Game(context: Context): View(context) {
     private var hasInitializedActors = false
 
     fun initialize() {
-        EventBus.addListener(::handleInput)
-
         paint = Paint()
         setBackgroundResource(R.drawable.background)
 
         val floor = Floor(this)
+        val player = Player(this, floor)
+
+        player.sprite = R.drawable.player
 
         gameActors.add(floor)
+        gameActors.add(player)
     }
 
     override fun onDraw(canvas: Canvas) {
@@ -63,9 +65,5 @@ class Game(context: Context): View(context) {
         gameActors.forEach {
             it.draw()
         }
-    }
-
-    private fun handleInput() {
-        Toast.makeText(context, "ActionWasMoved", Toast.LENGTH_SHORT).show()
     }
 }
