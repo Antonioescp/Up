@@ -1,5 +1,7 @@
 package com.pglabs.canvastest.model
 
+import com.pglabs.canvastest.R
+
 class Player(ownerGame: Game, private val floor: Floor) : Actor(ownerGame) {
     private val gravity = Vector2(0.0f, 9.81f)
     private val gravityScale = 250.0f
@@ -16,6 +18,8 @@ class Player(ownerGame: Game, private val floor: Floor) : Actor(ownerGame) {
         super.start()
 
         EventBus.addListener(::onTouchActionDown)
+
+        sprite = R.drawable.player
 
         position.y = game.height / 2.0f
         position.x = game.width / 2.0f
@@ -35,7 +39,10 @@ class Player(ownerGame: Game, private val floor: Floor) : Actor(ownerGame) {
             velocity = Vector2()
 
             position.y = floor.position.y + offset
+
+            sprite = R.drawable.player
         } else {
+            sprite = R.drawable.player_jump
             isGrounded = false
         }
     }

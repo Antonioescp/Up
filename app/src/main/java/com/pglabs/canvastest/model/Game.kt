@@ -4,7 +4,6 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.view.View
-import android.widget.Toast
 import com.pglabs.canvastest.R
 
 class Game(context: Context): View(context) {
@@ -22,14 +21,17 @@ class Game(context: Context): View(context) {
 
     private var hasInitializedActors = false
 
+    private var skyStars = Sprite(context)
+    private var skyStarsPosition = Vector2()
+
     fun initialize() {
         paint = Paint()
         setBackgroundResource(R.drawable.background)
 
+        skyStars.set(R.drawable.sky_stars)
+
         val floor = Floor(this)
         val player = Player(this, floor)
-
-        player.sprite = R.drawable.player
 
         gameActors.add(floor)
         gameActors.add(player)
@@ -42,10 +44,19 @@ class Game(context: Context): View(context) {
             gameActors.forEach {
                 it.start()
             }
+
+            skyStarsPosition.x = canvas.width.toFloat() / 2.0f / 0.05f
+            skyStarsPosition.y = canvas.height.toFloat() / 4.0f / 0.1f
             hasInitializedActors = true
         }
 
         update()
+
+        canvas.save()
+        canvas.scale(0.1f, 0.1f)
+        skyStars.draw(skyStarsPosition, canvas)
+        canvas.restore()
+
         draw()
 
         this.invalidate()
