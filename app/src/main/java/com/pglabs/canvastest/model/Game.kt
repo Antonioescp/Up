@@ -2,10 +2,9 @@ package com.pglabs.canvastest.model
 
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.Paint
 import android.view.View
-import androidx.core.content.ContextCompat
+import android.widget.Toast
 import com.pglabs.canvastest.R
 
 class Game(context: Context): View(context) {
@@ -21,11 +20,17 @@ class Game(context: Context): View(context) {
     lateinit var paint: Paint
     private set
 
-    var hasInitializedActors = false
+    private var hasInitializedActors = false
 
     fun initialize() {
+        EventBus.addListener(::handleInput)
+
         paint = Paint()
         setBackgroundResource(R.drawable.background)
+
+        val floor = Floor(this)
+
+        gameActors.add(floor)
     }
 
     override fun onDraw(canvas: Canvas) {
@@ -44,8 +49,6 @@ class Game(context: Context): View(context) {
         this.invalidate()
     }
 
-    private fun handleInput(): Nothing = TODO()
-
     private fun update() {
         val currentTime: Long = System.currentTimeMillis()
         deltaTime = (currentTime - time) / 1000.0f
@@ -60,5 +63,9 @@ class Game(context: Context): View(context) {
         gameActors.forEach {
             it.draw()
         }
+    }
+
+    private fun handleInput() {
+        Toast.makeText(context, "ActionWasMoved", Toast.LENGTH_SHORT).show()
     }
 }
