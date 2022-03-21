@@ -26,6 +26,16 @@ class Game(context: Context): View(context) {
 
     fun initialize() {
         paint = Paint()
+
+        var goombaLeft = goombaLeftMoving(this)
+        goombaLeft.sprite = R.drawable.goombaizquierda
+
+        var goombaRight = goombaRightMoving(this)
+        goombaRight.sprite = R.drawable.goombaderecha
+
+        gameActors.add(goombaLeft)
+        gameActors.add(goombaRight)
+
         setBackgroundResource(R.drawable.background)
 
         skyStars.set(R.drawable.sky_stars)
