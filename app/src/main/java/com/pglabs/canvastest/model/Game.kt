@@ -42,6 +42,9 @@ class Game(context: Context): View(context) {
 
         val rocks = Rock(this, floor)
         gameActors.add(rocks)
+
+        val otherPrimitives = RemainingPrimitives(this)
+        gameActors.add(otherPrimitives)
     }
 
     override fun onDraw(canvas: Canvas) {

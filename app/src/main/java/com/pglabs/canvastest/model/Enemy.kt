@@ -6,10 +6,10 @@ import kotlin.random.Random
 class Enemy(ownerGame: Game, private val floor: Floor) : Actor(ownerGame) {
     var movementSpeed = 0.0f
     var direction = 1.0f
-    val baseMovementSpeed = 750.0f
+    val baseMovementSpeed = 800.0f
 
     var elapsedTime = 0.0f
-    var targetTime = 1.0f
+    var targetTime = 5.0f
 
     val colliderRadius = 140.0f
 
