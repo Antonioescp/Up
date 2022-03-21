@@ -16,6 +16,7 @@ open class Actor(val game: Game) {
             field = value
         }
 
+    open fun start() {}
     open fun update() {}
     open fun draw() {
         drawable.draw(position, game.canvas)

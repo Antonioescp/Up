@@ -2,8 +2,10 @@ package com.pglabs.canvastest.model
 
 import android.content.Context
 import android.graphics.Canvas
+import android.graphics.Color
 import android.graphics.Paint
 import android.view.View
+import androidx.core.content.ContextCompat
 import com.pglabs.canvastest.R
 
 class Game(context: Context): View(context) {
@@ -19,17 +21,22 @@ class Game(context: Context): View(context) {
     lateinit var paint: Paint
     private set
 
+    var hasInitializedActors = false
+
     fun initialize() {
         paint = Paint()
-
-        var movingRing = MovingSpriteActorExample(this)
-        movingRing.sprite = R.drawable.anillitos
-
-        gameActors.add(movingRing)
+        setBackgroundResource(R.drawable.background)
     }
 
     override fun onDraw(canvas: Canvas) {
         this.canvas = canvas
+
+        if (!hasInitializedActors) {
+            gameActors.forEach {
+                it.start()
+            }
+            hasInitializedActors = true
+        }
 
         update()
         draw()
