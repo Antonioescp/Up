@@ -19,10 +19,10 @@ class Vector2 {
 
     fun magnitude() = sqrt(x * x + y * y)
     fun normalized() = Vector2(x, y) / magnitude()
-    fun normalize() {
-        var mag = magnitude()
-        x /= mag
-        y /= mag
+
+    fun distanceTo(other: Vector2): Float {
+        var direction = other - this
+        return direction.magnitude()
     }
 
     operator fun plus(other: Vector2) = Vector2(x + other.x, y + other.y)

@@ -12,4 +12,5 @@
     <color name="sky_start">#FF4C77FF</color>
     <color name="sky_end">#FFA7BFFF</color>
     <color name="grass">#3F9136</color>
+    <color name="primitives">#C8E600FF</color>
 </resources>
