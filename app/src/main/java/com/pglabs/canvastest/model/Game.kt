@@ -38,6 +38,18 @@ class Game(context: Context): View(context) {
         val player = Player(this, floor, enemy)
 
         gameActors.add(player)
+<<<<<<< HEAD
+
+        var goombaLeft = GoombaLeftMoving(this)
+        goombaLeft.sprite = R.drawable.goombaizquierda
+
+        var goombaRight = GoombaRightMoving(this)
+        goombaRight.sprite = R.drawable.goombaderecha
+
+        gameActors.add(goombaLeft)
+        gameActors.add(goombaRight)
+
+=======
         gameActors.add(enemy)
 
         val rocks = Rock(this, floor)
@@ -45,6 +57,7 @@ class Game(context: Context): View(context) {
 
         val otherPrimitives = RemainingPrimitives(this)
         gameActors.add(otherPrimitives)
+>>>>>>> 69e20601350aa98916e5538bb92f3d4076bea07a
     }
 
     override fun onDraw(canvas: Canvas) {
