@@ -1,6 +1,6 @@
 package com.pglabs.canvastest.model
 
-class goombaLeftMoving(ownerGame: Game) : Actor(ownerGame) {
+class GoombaLeftMoving(ownerGame: Game) : Actor(ownerGame) {
     var movementSpeed = 100.0f
 
     override fun start() {

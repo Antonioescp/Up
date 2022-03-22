@@ -27,15 +27,6 @@ class Game(context: Context): View(context) {
     fun initialize() {
         paint = Paint()
 
-        var goombaLeft = goombaLeftMoving(this)
-        goombaLeft.sprite = R.drawable.goombaizquierda
-
-        var goombaRight = goombaRightMoving(this)
-        goombaRight.sprite = R.drawable.goombaderecha
-
-        gameActors.add(goombaLeft)
-        gameActors.add(goombaRight)
-
         setBackgroundResource(R.drawable.background)
 
         skyStars.set(R.drawable.sky_stars)
@@ -45,6 +36,16 @@ class Game(context: Context): View(context) {
 
         gameActors.add(floor)
         gameActors.add(player)
+
+        var goombaLeft = GoombaLeftMoving(this)
+        goombaLeft.sprite = R.drawable.goombaizquierda
+
+        var goombaRight = GoombaRightMoving(this)
+        goombaRight.sprite = R.drawable.goombaderecha
+
+        gameActors.add(goombaLeft)
+        gameActors.add(goombaRight)
+
     }
 
     override fun onDraw(canvas: Canvas) {
